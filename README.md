@@ -10,7 +10,7 @@ Jasne! Możemy zrobić **onelinery**, które pozwolą uruchomić agenta od razu,
 Pobiera i uruchamia dynamicznego agenta w jednym kroku:
 
 ```bash
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/wronai/go-forward-llm/main/dev_agent_dynamic_linux.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/wronai/go-forward-llm/main/dev_agent.sh)"
 ```
 
 **Jak działa:**
@@ -25,7 +25,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/wronai/go-forward-llm/ma
 Pobiera i uruchamia agenta dynamicznego w PowerShell:
 
 ```powershell
-Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/wronai/go-forward-llm/main/dev_agent_dynamic.ps1')
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/wronai/go-forward-llm/main/dev_agent.ps1')
 ```
 
 **Jak działa:**
