@@ -1,7 +1,3 @@
-Jasne! Oto poprawiona i bardziej czytelna wersja Twojej dokumentacji z lepszym opisem funkcjonalności i przepływu działania. Zoptymalizowałem strukturę, dodałem jasne sekcje i lepiej opisałem ideę „continuous improvement” z użyciem Makefile i dynamicznych skryptów.
-
----
-
 # go-forward-llm
 
 **Go Forward LLM** – uniwersalny agent do automatyzacji i ciągłego udoskonalania projektów programistycznych przy pomocy LLM.
