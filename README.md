@@ -1,6 +1,51 @@
 # go-forward-llm
 Do it LLM - Go Forward LLM with my project
 
+Jasne! Możemy zrobić **onelinery**, które pozwolą uruchomić agenta od razu, bez wcześniejszego zapisywania pliku – skrypt zostanie pobrany i uruchomiony dynamicznie. Poniżej propozycje dla **Linux** i **Windows PowerShell**:
+
+---
+
+## **Linux Oneliner**
+
+Pobiera i uruchamia dynamicznego agenta w jednym kroku:
+
+```bash
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/wronai/go-forward-llm/main/dev_agent_dynamic_linux.sh)"
+```
+
+**Jak działa:**
+
+* `curl` pobiera skrypt z repozytorium.
+* `bash -c` uruchamia go bezpośrednio w powłoce.
+
+---
+
+## **Windows PowerShell Oneliner**
+
+Pobiera i uruchamia agenta dynamicznego w PowerShell:
+
+```powershell
+Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/wronai/go-forward-llm/main/dev_agent_dynamic.ps1')
+```
+
+**Jak działa:**
+
+* `DownloadString` pobiera zawartość skryptu z repo.
+* `Invoke-Expression` wykonuje pobrany skrypt natychmiast.
+
+> Tak samo – zamień `USERNAME` na właściwe repo.
+
+---
+
+✅ **Cechy onelinerów:**
+
+* Działa natychmiast, bez ręcznego pobierania pliku.
+* Automatycznie tworzy wszystkie podskrypty i katalogi potrzebne agentowi.
+* Zachowuje pełną wielowarstwowość i mechanizm self-healing.
+* Linux: wymaga `bash` i `curl`.
+* Windows: wymaga PowerShell 5+ i dostępu do internetu.
+
+
 ---
 
 ## Linux Agent
