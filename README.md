@@ -1,11 +1,20 @@
 # go-forward-llm
-Do it LLM - Go Forward LLM with my project
 
-Jasne! Możemy zrobić **onelinery**, które pozwolą uruchomić agenta od razu, bez wcześniejszego zapisywania pliku – skrypt zostanie pobrany i uruchomiony dynamicznie. Poniżej propozycje dla **Linux** i **Windows PowerShell**:
+Do it LLM – Go Forward LLM for my project
 
 ---
 
-## **Linux Oneliner**
+## Uniwersalny Agent – uruchamianie projektu
+
+Skrypt automatycznie znajduje pliki startowe i targety w projekcie, niezależnie od języka programowania. Sprawdza kolejno:
+
+1. `Makefile` – szuka targetu `run` lub `start`.
+2. `README.md` – wyszukuje przykładowe komendy uruchamiające.
+3. Typowe pliki startowe – np. `main.*`, `app.*`, `index.*`.
+
+---
+
+## Linux Oneliner
 
 Pobiera i uruchamia dynamicznego agenta w jednym kroku:
 
@@ -20,9 +29,7 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/wronai/go-forward-llm/ma
 
 ---
 
-## **Windows PowerShell Oneliner**
-
-Pobiera i uruchamia agenta dynamicznego w PowerShell:
+## Windows PowerShell Oneliner
 
 ```powershell
 Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubusercontent.com/wronai/go-forward-llm/main/dev_agent.ps1')
@@ -30,96 +37,75 @@ Invoke-Expression (New-Object Net.WebClient).DownloadString('https://raw.githubu
 
 **Jak działa:**
 
-* `DownloadString` pobiera zawartość skryptu z repo.
-* `Invoke-Expression` wykonuje pobrany skrypt natychmiast.
-
-> Tak samo – zamień `USERNAME` na właściwe repo.
-
----
-
-✅ **Cechy onelinerów:**
-
-* Działa natychmiast, bez ręcznego pobierania pliku.
-* Automatycznie tworzy wszystkie podskrypty i katalogi potrzebne agentowi.
-* Zachowuje pełną wielowarstwowość i mechanizm self-healing.
-* Linux: wymaga `bash` i `curl`.
-* Windows: wymaga PowerShell 5+ i dostępu do internetu.
-
+* Pobiera zawartość skryptu z repo.
+* Uruchamia go natychmiast przy użyciu PowerShell.
 
 ---
 
 ## Linux Agent
 
-Skrypt automatyzuje projekt od **instalacji, przez walidację, naprawę, testy, aż po uruchomienie**. Tworzy wszystkie niezbędne katalogi i podskrypty, jeśli ich nie ma, a następnie uruchamia cały cykl.
+Skrypt automatyzuje projekt od **instalacji, przez walidację, naprawę, testy, aż po uruchomienie**.
 
 ### Jak użyć:
 
-1. Zapisz skrypt np. jako `dev_agent.sh`.
+1. Zapisz skrypt jako `dev_agent.sh`.
 2. Nadaj prawa do wykonania:
 
-   ```bash
-   chmod +x dev_agent.sh
-````
+```bash
+chmod +x dev_agent.sh
+```
 
 3. Uruchom w katalogu projektu:
 
-   ```bash
-   ./dev_agent.sh
-   ```
-4. Skrypt automatycznie tworzy podskrypty i uruchamia je w kolejności, wielowarstwowo, naprawiając problemy po drodze.
+```bash
+./dev_agent.sh
+```
 
-### Cechy:
+### Funkcjonalności:
 
-* Automatyczne tworzenie wszystkich potrzebnych podskryptów, jeśli ich brak.
-* Wielowarstwowa struktura – w razie błędów wywołuje kolejne warstwy naprawy.
-* Generowanie logów i diagnostyki.
-* Umożliwia uruchomienie projektu niezależnie od jego obecnego stanu.
-* Integracja narzędzi CLI typu Winsurf i Cursor, jeśli dostępne w systemie.
-* Dynamiczne, self-healing naprawy – agent generuje nowe podskrypty naprawcze w locie na podstawie logów.
+* Automatyczne tworzenie brakujących podskryptów.
+* Wielowarstwowa struktura – w razie błędów wywołuje kolejne warstwy naprawcze.
+* Logi i diagnostyka.
+* Uruchamianie projektu niezależnie od jego stanu.
+* Integracja narzędzi CLI (Winsurf, Cursor), jeśli dostępne.
+* Dynamiczne, self-healing naprawy na podstawie logów.
 
 ---
 
 ## Windows Agent (PowerShell)
 
-Skrypt działa natywnie na Windows i automatyzuje projekt w sposób **wielowarstwowy i self-healing**.
-
 ### Funkcjonalności:
 
-* Automatycznie instaluje zależności (Python, moduły pip)
-* Waliduje projekt (pliki, konfiguracje)
-* Wykonuje podstawowe i zaawansowane naprawy
-* Generuje logi i raporty
-* Testuje projekt (unit/regression)
-* Buduje i uruchamia projekt
-* Zachowuje **rekurencyjny, wielowarstwowy mechanizm**, pozwalający „pchać projekt do przodu” niezależnie od etapu
-* Integracja z narzędziami CLI typu Winsurf / Cursor, jeśli są obecne
-* Dynamiczne tworzenie podskryptów naprawczych w locie (self-healing)
+* Automatyczna instalacja zależności (Python, pip, Node, itp.).
+* Walidacja projektu (pliki, konfiguracje).
+* Podstawowe i zaawansowane naprawy.
+* Generowanie logów i raportów.
+* Testowanie (unit, regression).
+* Budowanie i uruchamianie projektu.
+* Wielowarstwowy mechanizm „push forward” – projekt może być uruchamiany niezależnie od etapu.
+* Integracja z narzędziami CLI (Winsurf, Cursor), jeśli dostępne.
+* Dynamiczne tworzenie podskryptów naprawczych w locie.
 
 ### Jak używać:
 
-1. Zapisz skrypt np. jako `dev_agent.ps1`.
+1. Zapisz skrypt jako `dev_agent.ps1`.
 2. W PowerShell ustaw politykę uruchamiania (jeśli potrzebne):
 
-   ```powershell
-   Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
-   ```
+```powershell
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+
 3. Uruchom w katalogu projektu:
 
-   ```powershell
-   .\dev_agent.ps1
-   ```
-
-### Cechy tej wersji:
-
-* Działa natywnie na Windows, bez potrzeby WSL.
-* Każdy krok ma fallback i może być rozszerzany o nowe podskrypty.
-* Automatycznie tworzy brakujące podskrypty.
-* Można rozszerzać o testy jednostkowe, regresyjne i integrację z GUI narzędzi typu Winsurf / Cursor.
-* Dynamiczne, self-healing – nowe naprawy generowane w locie na podstawie logów.
+```powershell
+.\dev_agent.ps1
+```
 
 ---
 
 ## Uwagi
 
-* Obie wersje agenta (Linux i Windows) umożliwiają **ciągłe przesuwanie projektu do przodu**, niezależnie od tego, na którym etapie napotkają problemy.
-* Architektura wielowarstwowa i wielopoziomowa pozwala na **ciągłe doskonalenie projektu**, automatyczne naprawy i pełną diagnostykę.
+* Skrypt działa niezależnie od języka programowania.
+* Architektura wielowarstwowa i self-healing zapewnia ciągłe przesuwanie projektu do przodu.
+* Automatycznie naprawia problemy, generuje logi i diagnozuje projekt.
+* Możliwość rozbudowy o dodatkowe testy i integracje.
